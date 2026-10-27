@@ -1,1 +1,11 @@
-<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Tevigator sign-in</title><p>Signed in. You can return to Tevigator.</p>
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tevigator 로그인</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;margin:24px;background:#121314;color:#F5F5F4}code{display:block;word-break:break-all;padding:12px;background:#24262A;border-radius:8px;margin:12px 0}button{font:inherit;padding:10px 16px;border:0;border-radius:8px;background:#14E0A6;color:#121314}</style></head>
+<body><h1>Tevigator 로그인</h1><p id="msg">로그인 코드를 확인하는 중…</p><code id="code" hidden></code><button id="copy" hidden>코드 복사</button>
+<script>
+var q=new URLSearchParams(location.search),c=q.get('code'),e=q.get('error');
+var msg=document.getElementById('msg'),box=document.getElementById('code'),btn=document.getElementById('copy');
+if(c){msg.textContent='로그인되었습니다. 아래 코드는 몇 분 안에 한 번만 쓸 수 있습니다.';box.textContent=c;box.hidden=false;btn.hidden=false;
+btn.onclick=function(){navigator.clipboard.writeText(c).then(function(){btn.textContent='복사됨'})}}
+else msg.textContent=e?('로그인 실패: '+e+' '+(q.get('error_description')||'')):'코드가 없습니다. Tevigator에서 로그인을 다시 시작하세요.';
+</script></body></html>
